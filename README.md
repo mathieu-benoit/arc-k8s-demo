@@ -51,4 +51,9 @@ TODO
 
 ## Full cleanup
 
-TODO
+```
+name=mabenoiteastus
+az group delete -n $name
+name=mabenoitwesteurope
+az group delete -n $name
+```
