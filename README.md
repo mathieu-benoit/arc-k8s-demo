@@ -29,14 +29,14 @@ export HELMREGISTRY=azurearcfork8s.azurecr.io/batch1/stable/azure-arc-k8sagents:
 az connectedk8s connect -n $name -g $name
 az k8sconfiguration create \
   -n azure-vote-config \
-  -c $AKS \
-  -g $AKS \
+  -c $name \
+  -g $name \
   --operator-instance-name azure-vote-config \
   --operator-namespace azure-vote-config \
-  -u https://github.com/Azure/arc-k8s-demo \
+  -u https://github.com/mathieu-benoit/azure-arc-k8s-demo \
   --scope cluster \
   --cluster-type connectedClusters \
-  --operator-params '--git-readonly --git-path=cluster-apps'
+  --operator-params '--git-readonly --git-path=azure-vote-app'
 ```
 
 + minikube?
