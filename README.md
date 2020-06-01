@@ -36,7 +36,7 @@ az k8sconfiguration create \
   -u https://github.com/mathieu-benoit/azure-arc-k8s-demo \
   --scope cluster \
   --cluster-type connectedClusters \
-  --operator-params '--git-readonly --git-path=azure-vote-app'
+  --operator-params '--git-readonly --git-poll-interval=30s --git-path=azure-vote-app'
 ```
 
 + minikube? KinD?
