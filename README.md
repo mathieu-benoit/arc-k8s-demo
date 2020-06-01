@@ -1,10 +1,14 @@
-# arc-k8s-demo
-
 Demo about Azure Arc enabled Kubernetes
+
+## Prerequisites
+
+- Azure CLI, [installation here](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- Helm 3, [installation here](https://helm.sh/docs/intro/install/)
+- Azure CLI extensions `ConnectedK8s` and `KubernetesConfiguration`, [installation here](https://docs.microsoft.com/azure/azure-arc/kubernetes/connect-cluster#install-azure-cli-extensions)
 
 ## Setup
 
-Deploy an AKS cluster in EastUS with 1.16.9:
+Deploy an AKS cluster in `EastUS` with `1.16.9`:
 ```
 name=mabenoiteastus
 location=eastus
@@ -15,7 +19,7 @@ export HELMREGISTRY=azurearcfork8s.azurecr.io/batch1/stable/azure-arc-k8sagents:
 az connectedk8s connect -n $name -g $name
 ```
 
-Deploy an AKS cluster in WestEurope with 1.14.7:'
+Deploy an AKS cluster in `WestEurope` with `1.14.7`:
 ```
 name=mabenoitwesteurope
 location=westeurope
@@ -37,5 +41,14 @@ az k8sconfiguration create \
 
 + minikube?
 
-## Demo's scripts
+## Demo
 
+TODO
+
+## Cleanup for Demo
+
+TODO
+
+## Full cleanup
+
+TODO
