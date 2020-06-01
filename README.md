@@ -39,7 +39,7 @@ az k8sconfiguration create \
   --operator-params '--git-readonly --git-path=azure-vote-app'
 ```
 
-+ minikube?
++ minikube? KinD?
 
 ## Demo
 
