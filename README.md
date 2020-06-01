@@ -12,21 +12,35 @@ Deploy an AKS cluster in `EastUS` with `1.16.9`:
 ```
 name=mabenoiteastus
 location=eastus
-az group create -n $name -l $location
-az aks create -l $location -n $name -g $name --no-ssh-key -k 1.16.9 -s Standard_B2s -c 1 --enable-managed-identity
-az aks get-credentials -g $name -n $name
-export HELMREGISTRY=azurearcfork8s.azurecr.io/batch1/stable/azure-arc-k8sagents:0.2.4
-az connectedk8s connect -n $name -g $name
-```
+az group create \
+  -n $name \
+  -l $location
+az aks create \
+  -l $location \
+    -n $name \
+    -g $name \
+    --no-ssh-key \
+    -k 1.16.9 \
+    -s Standard_B2s \
+    -c 1 \
+    --enable-managed-identity
 
-Deploy an AKS cluster in `WestEurope` with `1.14.7`:
-```
-name=mabenoitwesteurope
-location=westeurope
-az group create -n $name -l $location
-az aks create -l $location -n $name -g $name --no-ssh-key -k 1.14.7 -s Standard_B2s -c 1 --enable-managed-identity
+# Create a Connected Kubernetes service
 export HELMREGISTRY=azurearcfork8s.azurecr.io/batch1/stable/azure-arc-k8sagents:0.2.4
-az connectedk8s connect -n $name -g $name
+az connectedk8s connect \
+  -n $name \
+  -g $name
+  
+# Onboard the Connected Kubernetes service with Azure Monitor for containers
+curl -LO https://raw.githubusercontent.com/microsoft/OMS-docker/ci_feature/docs/haiku/onboarding_azuremonitor_for_containers.sh
+connectedk8sId=$(az connectedk8s show \
+  -n $name \
+  -g $name \
+  --query id \
+  -o tsv)
+bash onboarding_azuremonitor_for_containers.sh $connectedk8sId $name
+  
+# Create a Kubernetes Configuration (GitOps) hooked to the azure-vote-app
 az k8sconfiguration create \
   -n azure-vote-config \
   -c $name \
@@ -39,8 +53,6 @@ az k8sconfiguration create \
   --operator-params '--git-readonly --git-poll-interval=30s --git-path=azure-vote-app'
 ```
 
-+ minikube? KinD?
-
 ## Demo
 
 TODO
@@ -52,8 +64,5 @@ TODO
 ## Full cleanup
 
 ```
-name=mabenoiteastus
-az group delete -n $name
-name=mabenoitwesteurope
 az group delete -n $name
 ```
