@@ -6,7 +6,7 @@ Demo about Azure Arc enabled Kubernetes
 - Helm 3, [installation here](https://helm.sh/docs/intro/install/)
 - Azure CLI extensions `ConnectedK8s` and `KubernetesConfiguration`, [installation here](https://docs.microsoft.com/azure/azure-arc/kubernetes/connect-cluster#install-azure-cli-extensions)
 
-## Setup
+## Demo
 
 Deploy an AKS cluster in `EastUS` with `1.16.9`:
 ```
@@ -53,16 +53,15 @@ az k8sconfiguration create \
   --operator-params '--git-readonly --git-poll-interval=30s --git-path=azure-vote-app'
 ```
 
-## Demo
-
-TODO
-
-## Cleanup for Demo
-
-TODO
-
-## Full cleanup
+## Cleanup
 
 ```
 az group delete -n $name
 ```
+
+## References
+
+- [Azure Arc](https://azure.microsoft.com/services/azure-arc/)
+- [Azure Arc enabled Kubernetes](https://docs.microsoft.com/azure/azure-arc/kubernetes/)
+- [Azure Arc and Kubernetes: a Developer Story](https://mybuild.microsoft.com/sessions/42d3ed24-6773-45c8-82bd-6dec4a583c89)
+- [Advanced scenarios with Azure Arc](https://github.com/likamrat/azure_arc)
